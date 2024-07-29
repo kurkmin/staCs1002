@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# MIT License
+
+# Copyright (c) 2016 University of St Andrews
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+import sys
+import json
+import pprint
+import functools
+import re
+
+if len(sys.argv) < 2:
+    print("Usage: ./student_csv <list of json outputs from stacscheck>")
+    print("Generate json from stacscheck with the --json flag")
+
+jsons = []
+
+for f in sys.argv[1:]:
+    try:
+        with open(f) as data_file:
+            jsons.append(json.load(data_file))
+    except EnvironmentError as e:
+        print("Couldn't read JSON file: " + str(e))
+        sys.exit(1)
+
+allTestNames = set([ test["name"] for student in jsons for test in student["tests"] ])
+
+def nameComp(file1, file2):
+    s1 = file1.split("/")
+    s2 = file2.split("/")
+    if s1 == s2:
+        return 0
+    for i in range(min(len(s1),len(s2))):
+        if s1[i] != s2[i]:
+            if len(s1) == i+1 and len(s2) > i+1:
+                return -1
+            if len(s1) > i+1 and len(s2) == i+1:
+                return 1
+            if s1 < s2:
+                return -1
+            if s2 > s1:
+                return 1
+    return 0
+
+allTestNames = sorted(list(allTestNames), key=functools.cmp_to_key(nameComp))
+
+passcount = dict()
+
+for t in allTestNames:
+    passcount[t] = 0
+
+_RE_COMBINE_WHITESPACE = re.compile(r"\s+")
+#get each student from our jsons object
+for student in jsons:
+    #set up the mark and feedback
+    student["mark"] = ""
+    student["feedback"] = ""
+    #get each test from the student's submission
+    for test in student["tests"]:
+        try:
+            output = json.loads(_RE_COMBINE_WHITESPACE.sub(" ", test["stdout"]))
+            student["mark"] = output["mark"]
+            student["feedback"] = output["feedback"].replace('"', "'")
+            break
+        except EnvironmentError as e:
+            print("Couldn't read JSON file: " + str(e))
+            sys.exit(1)
+        except ValueError as e:
+            if test["stdout"] == "":
+                student["mark"] = "RED"
+                student["feedback"] = _RE_COMBINE_WHITESPACE.sub(" ", test["stderr"].replace('"', "'"))
+            else:
+                student["mark"] = "RED"
+                student["feedback"] = _RE_COMBINE_WHITESPACE.sub(" ", test["stdout"].replace('"', "'"))
+
+#get each student from our jsons object
+for student in jsons:
+    print(student["subid"] + ',' + student["mark"] + ',,"' + student["feedback"] + '"')
+
+
+

@@ -1,0 +1,35 @@
+{
+  "course": "CS1234",
+  "infotext": [
+    "- Looking for submission in a directory called 'line-length': ",
+    "Already in it!\n"
+  ],
+  "practical": "Practical 1",
+  "subid": "<unknown>",
+  "tests": [
+    {
+      "inputlines": [
+        "No .in input file (search manually)."
+      ],
+      "name": "test-length",
+      "pass": true,
+      "path": "DIR/tests/line-length/testdir/test-length.sh",
+      "returnval": 0,
+      "stderr": "",
+      "stdout": "Line 3 too long, it should be 80 characters or less, it is 81 \n\"123456789012345678901234567890123456789012345678901234567890123456789012345678901\"\nLine 5 too long, it should be 80 characters or less, it is 83 \n\"12345678901234567890123456789012345678901234567890123456789012345678901234567890123\"\n",
+      "type": "Test"
+    },
+    {
+      "inputlines": [
+        "No .in input file (search manually)."
+      ],
+      "name": "test-no-arguments",
+      "pass": true,
+      "path": "DIR/tests/line-length/testdir/test-no-arguments.sh",
+      "returnval": 0,
+      "stderr": "",
+      "stdout": "",
+      "type": "Test"
+    }
+  ]
+}

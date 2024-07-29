@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# MIT License
+
+# Copyright (c) 2016 University of St Andrews
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+import sys
+import jinja2
+import json
+import pprint
+import functools
+
+JINJAPAGE = """
+<!DOCTYPE html>
+<style type="text/css">
+    </style>
+<html lang="en">
+<head>
+    <title>{{Practical}}</title>
+</head>
+<body>
+    <table>
+    <tr><th></th>
+    {% for name in testnames %}
+    <th> {{ name.replace("/","/ ").replace("_","_ ") }} </th>
+    {% endfor %}
+    <th>total (/{{ testnames | length}})</th>
+    </tr>
+
+    {% for student in students %}
+    <tr>
+    <td style="width:10px"> <a href="txt/{{student.subid}}.txt">{{ student.subid }}</a> </td>
+    {%- for name in testnames -%}
+    {%- if name in student.dicttests -%}
+        {%- if student.dicttests[name].pass -%}
+        <td bgcolor = "#BFB"><a href="html/{{student.subid}}.html#{{name}}">Y</a></td>
+        {%- else -%}
+        <td bgcolor = "#FBB"><a href="html/{{student.subid}}.html#{{name}}">N</a></td>
+        {%- endif -%}
+    {%- else -%}
+        <td> </td>
+    {%- endif -%}
+    {%- endfor -%}
+    <td>{{student.passes}}</td>
+    </tr>
+    {%- endfor -%}
+    <tr>
+    <td> total: {{ students | length }}</td>
+    {%- for name in testnames -%}
+       <td> {{ passcount[name] }} </td> 
+    {%- endfor -%}
+    <td>
+    </tr>
+    <tr>
+    <td>  </td>
+    {%- for name in testnames -%}
+       <td> {{ (passcount[name] / ( students | length ) * 100) | int }} </td> 
+    {%- endfor -%}
+    <td>
+    </tr>
+</table>
+</body>
+</html>
+"""
+
+if len(sys.argv) < 2:
+    print("Usage: ./student_overview <list of json outputs from stacscheck>")
+    print("Generate json from stacscheck with the --json flag")
+
+jsons = []
+
+for f in sys.argv[1:]:
+    try:
+        with open(f) as data_file:
+            jsons.append(json.load(data_file))
+    except EnvironmentError as e:
+        print("Couldn't read JSON file: " + str(e))
+        sys.exit(1)
+
+allTestNames = set([ test["name"] for student in jsons for test in student["tests"] ])
+
+def nameComp(file1, file2):
+    s1 = file1.split("/")
+    s2 = file2.split("/")
+    if s1 == s2:
+        return 0
+    for i in range(min(len(s1),len(s2))):
+        if s1[i] != s2[i]:
+            if len(s1) == i+1 and len(s2) > i+1:
+                return -1
+            if len(s1) > i+1 and len(s2) == i+1:
+                return 1
+            if s1 < s2:
+                return -1
+            if s2 > s1:
+                return 1
+    return 0
+
+allTestNames = sorted(list(allTestNames), key=functools.cmp_to_key(nameComp))
+
+passcount = dict()
+
+for t in allTestNames:
+    passcount[t] = 0
+
+for student in jsons:
+    student["dicttests"] = dict()
+    student["passes"] = 0
+    for test in student["tests"]:
+        student["dicttests"][test["name"]] = test
+        if test["pass"]:
+            student["passes"] += 1
+            passcount[test["name"]] += 1
+
+
+env = jinja2.Environment(autoescape=True)
+template = env.from_string(JINJAPAGE)
+
+print(template.render(testnames=allTestNames, passcount=passcount, students=jsons))
