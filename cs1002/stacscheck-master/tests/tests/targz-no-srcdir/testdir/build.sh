@@ -1,3 +1,0 @@
-#!/bin/bash
-
-./practical.sh

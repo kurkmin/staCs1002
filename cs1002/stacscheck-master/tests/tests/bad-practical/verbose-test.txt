@@ -1,3 +1,0 @@
-stacscheck VERSION
-'testdir' is not a directory
-Check you have the test directory name correct!

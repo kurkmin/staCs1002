@@ -1,2 +1,0 @@
-echo info-B.sh
-

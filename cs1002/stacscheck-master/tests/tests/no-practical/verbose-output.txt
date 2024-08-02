@@ -1,3 +1,0 @@
-stacscheck VERSION
-There is no directory called 'testdir'
-Check you have the test directory name correct!
