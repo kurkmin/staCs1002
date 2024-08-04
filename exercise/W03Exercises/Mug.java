@@ -30,7 +30,24 @@ public class Mug {
     }
 
     public void print() {
-        System.out.printf("%s mug (%dmm x %dmm).%n", name, height, width);
+        System.out.printf("%s mug (%dmm x %dmm), holding %.3fl and up to %d marshmallows.%n", 
+        name, height, width, getVolume(), getMarshmallowLimit());
+    }
+
+    // part 2
+    // calculates the surface area of the top of the mug
+    public int getTopArea() {
+        return (int)(width/2.0 * width/2.0 * Math.PI);
+    }
+
+    // calculates the volume of a mug 
+    public double getVolume() {
+        return height * getTopArea() / 1000000.0; 
+    }
+
+    // get the maximum number of marshmallows that are permitted per litre 
+    public int getMarshmallowLimit() {
+        return (int)(getVolume()/0.2); 
     }
 
     public static void main (String[] args) {
