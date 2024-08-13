@@ -5,22 +5,30 @@ public class CuboidMug extends Mug {
         super(name, height, width);
         this.depth = depth;
     }
-    
-    public int getCuboidTopArea() {
+
+    @Override
+    public int getTopArea() {
         return getWidth() * this.depth;
     }
 
-    public double getCuboidVolume() {
-        return  getHeight() * getCuboidTopArea()/ 1000000.0; 
+    // public double getVolume() {
+    // return getHeight() * getTopArea() / 1000000.0;
+    // }
+
+    // public int getCuboidMarshmallowLimit() {
+    // double volume = getVolume();
+    // return (int) (volume / Mug.LITRES_PER_MALLOW);
+    // }
+
+    @Override
+    public void print() {
+        System.out.printf("%s mug (%dmm x %dmm x %dmm), holding %.3fl and up to %d marshmallows.%n",
+                getName(), getHeight(), getWidth(), depth, getVolume(), getMarshmallowLimit());
     }
 
-    public int getCuboidMarshmallowLimit() {
-        double volume = getCuboidVolume();
-        return (int)(volume/Mug.LITRES_PER_MALLOW);
-    }
-
-    public void printCuboid() {
-        System.out.printf("%s mug (%dmm x %dmm x %dmm), holding %.3fl and up to %d marshmallows.%n", 
-            getName(), getHeight(), getWidth(), depth, getCuboidVolume(), getCuboidMarshmallowLimit());
+    @Override
+    public String toString() {
+        return String.format("%s mug (%dmm x %dmm), holding %.3fl and up to %d marshmallows.",
+                name, height, width, getVolume(), getMarshmallowLimit());
     }
 }

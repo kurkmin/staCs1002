@@ -11,21 +11,21 @@ public class W10Exercises {
         // Cuboid depth 72mm, width 70mm, and height 80mm
         // volume 0.403 litres and 2 marshmallows
         CuboidMug cuboidMug = new CuboidMug("Cuboid", 80, 70, 72);
-        cuboidMug.printCuboid();
+        cuboidMug.print();
 
         // Conical base width 70mm, top width 68mm, and height 80mm
         // 0.299 litres and marshmallow limit as 1
         ConicalMug conicalMug = new ConicalMug("Conical", 80, 68, 70);
-        conicalMug.printConical();
+        conicalMug.print();
 
         // Square size 70
         // volume as 0.343 litres and marshmallow limit as 1
         SquareMug squareMug = new SquareMug("Square", 70);
-        squareMug.printCuboid();
+        squareMug.print();
 
         System.out.println("\n-- Test Drinks --");
         // testing drink
-        Drink espresso = new Drink("Espresso", 2.99, true, smallMug);
+        Drink espresso = new Drink("Espresso", 2.99, true, squareMug);
         Drink latte = new Drink("Latte", 3.99, true, standardMug);
         Drink chamomile = new Drink("Chamomile Tea", 1.99, false, standardMug);
 
@@ -75,5 +75,7 @@ public class W10Exercises {
         oval.print();
 
         System.out.println();
+        System.out.println(smallMug);
+        System.out.println(squareMug);
     }
 }
