@@ -1,4 +1,4 @@
-public class Mug {
+public abstract class Mug {
     private String name;
     private int height;
     private int width;
@@ -13,7 +13,7 @@ public class Mug {
     public String getName() {
         return name;
     }
-    
+
     public int getHeight() {
         return height;
     }
@@ -34,25 +34,21 @@ public class Mug {
         System.out.println(this);
     }
 
-    //calculate area of the top of the mug
-    public int getTopArea() {
-        return (int)(width/2.0 * width/2.0 * Math.PI);
-    }
-     
-    //calculate volume of mug
-    public double getVolume() {
-        return height * getTopArea()/ 1000000.0; //call method to calculate area of the top of the mug
-    }
+    // calculate area of the top of the mug
+    public abstract int getTopArea();
 
-    //calculate how many marshmallows will fit in the mug
+    // calculate volume of mug
+    public abstract double getVolume();
+
+    // calculate how many marshmallows will fit in the mug
     public int getMarshmallowLimit() {
         double volume = getVolume();
-        return (int)(volume/LITRES_PER_MALLOW);
+        return (int) (volume / LITRES_PER_MALLOW);
     }
 
     @Override
     public String toString() {
-        return String.format("%s mug (%dmm x %dmm), holding %.3fl and up to %d marshmallows.", 
-            name, height, width, getVolume(), getMarshmallowLimit());
+        return String.format("%s mug (%dmm x %dmm), holding %.3fl and up to %d marshmallows.",
+                name, height, width, getVolume(), getMarshmallowLimit());
     }
 }

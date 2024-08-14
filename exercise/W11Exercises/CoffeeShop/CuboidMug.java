@@ -5,21 +5,31 @@ public class CuboidMug extends Mug {
         super(name, height, width);
         this.depth = depth;
     }
-    
+
     @Override
     public int getTopArea() {
         return getWidth() * this.depth;
     }
 
-/*     @Override
-    public void print() {
-        System.out.printf("%s mug (%dmm x %dmm x %dmm), holding %.3fl and up to %d marshmallows.%n", 
-            getName(), getHeight(), getWidth(), depth, getVolume(), getMarshmallowLimit());
-    }*/
+    @Override
+    public double getVolume() {
+        return getHeight() * getTopArea() / 1000000.0;
+    }
+
+    /*
+     * @Override
+     * public void print() {
+     * System.out.
+     * printf("%s mug (%dmm x %dmm x %dmm), holding %.3fl and up to %d marshmallows.%n"
+     * ,
+     * getName(), getHeight(), getWidth(), depth, getVolume(),
+     * getMarshmallowLimit());
+     * }
+     */
 
     @Override
     public String toString() {
-        return String.format("%s mug (%dmm x %dmm x %dmm), holding %.3fl and up to %d marshmallows.", 
-            getName(), getHeight(), getWidth(), depth, getVolume(), getMarshmallowLimit());
+        return String.format("%s mug (%dmm x %dmm x %dmm), holding %.3fl and up to %d marshmallows.",
+                getName(), getHeight(), getWidth(), depth, getVolume(), getMarshmallowLimit());
     }
 }
