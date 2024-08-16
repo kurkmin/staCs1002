@@ -17,7 +17,7 @@ public class W01Exercise1 {
         burger.setName("cheeseburger");
         burger.setPrice(3);
 
-        // create a hamburger with price 2
+        // create a hamburger with price, 2
         Burger burger2 = new Burger("hamburger", 2);
         burger2.addBottomBun();
         burger2.addPatty();
