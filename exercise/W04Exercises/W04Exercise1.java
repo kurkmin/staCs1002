@@ -31,7 +31,7 @@ public class W04Exercise1 {
     }
 
     public void exercise1() {
-        Scanner reader = new Scanner(System.in);
+
         System.out.println("Enter number:");
         int number = reader.nextInt();
         if (number < 0)
@@ -39,7 +39,7 @@ public class W04Exercise1 {
     }
 
     public void exercise2() {
-        Scanner reader = new Scanner(System.in);
+
         System.out.println("Enter number:");
         int number = reader.nextInt();
         if (number >= 0)
@@ -47,7 +47,7 @@ public class W04Exercise1 {
     }
 
     public void exercise3() {
-        Scanner reader = new Scanner(System.in);
+
         System.out.println("Enter number:");
         int number = reader.nextInt();
         if (number > 0) {
@@ -64,7 +64,7 @@ public class W04Exercise1 {
     }
 
     public void exercise4() {
-        Scanner reader = new Scanner(System.in);
+
         System.out.println("Enter animal:");
 
         // This is needed in order to clean up after the previous test.
@@ -88,12 +88,12 @@ public class W04Exercise1 {
 
     public void exercise5() {
         System.out.println("Enter string 1:");
-        Scanner reader1 = new Scanner(System.in);
+
         // This is needed in order to clean up after the previous test.
-        String s1 = reader1.nextLine();
+        String s1 = reader.nextLine();
         System.out.println("Enter string 2");
-        Scanner reader2 = new Scanner(System.in);
-        String s2 = reader2.nextLine();
+
+        String s2 = reader.nextLine();
         // Add new code here.
         if (s1.contains(s2)) {
             System.out.printf("%s does contain %s, starting at position %s", s1, s2, s1.indexOf(s2));
