@@ -171,19 +171,17 @@ public class W05Exercise1 {
 
         System.out.println("Enter number:");
         int userSeq = reader.nextInt();
-        String star = "x ";
+        String star = "";
         for (int i = 0; i < userSeq; i++) {
-            System.out.println(star);
             star = star + "x ";
+            System.out.println(star);
         }
 
-        // for (int i = 1; i <= userSeq; i++) {
-        // userSeq = userSeq - 1;
-        // int endIndex = 2 * userSeq;
-        // star = star.substring(0, endIndex);
-        // System.out.println(star);
-
-        // }
+        for (int i = 1; i < userSeq; i++) {
+            int starSeq = (2 * userSeq) - (2 * i);
+            star = star.substring(0, starSeq);
+            System.out.println(star);
+        }
 
     }
 
