@@ -5,37 +5,45 @@ public class W04Exercise1 {
     Scanner reader = new Scanner(System.in);
 
     public static void main(String[] args) {
-    
+
         W04Exercise1 exercises = new W04Exercise1();
-        
+
         exercises.runExercises();
     }
-    
+
     public void runExercises() {
 
         System.out.println("Enter exercise number:");
         int number = reader.nextInt();
-        
-        if (number == 1) exercise1();
-        else if (number == 2) exercise2();
-        else if (number == 3) exercise3();
-        else if (number == 4) exercise4();
-        else if (number == 5) exercise5();
-        else System.out.println("unknown exercise");
+
+        if (number == 1)
+            exercise1();
+        else if (number == 2)
+            exercise2();
+        else if (number == 3)
+            exercise3();
+        else if (number == 4)
+            exercise4();
+        else if (number == 5)
+            exercise5();
+        else
+            System.out.println("unknown exercise");
     }
 
     public void exercise1() {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter number:");
         int number = reader.nextInt();
-        if (number < 0) System.out.printf("%s is negative", number);
+        if (number < 0)
+            System.out.printf("%s is negative", number);
     }
 
     public void exercise2() {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter number:");
         int number = reader.nextInt();
-        if (number >= 0) System.out.printf("%s is non-negative", number);
+        if (number >= 0)
+            System.out.printf("%s is non-negative", number);
     }
 
     public void exercise3() {
@@ -45,11 +53,11 @@ public class W04Exercise1 {
         if (number > 0) {
             System.out.printf("%s is non-negative", number);
         }
-        
+
         else if (number == 0) {
             System.out.printf("%s is zero", number);
         }
-        
+
         else {
             System.out.printf("%s is negative", number);
         }
@@ -58,21 +66,21 @@ public class W04Exercise1 {
     public void exercise4() {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter animal:");
-    
+
         // This is needed in order to clean up after the previous test.
         String animal = reader.nextLine();
-        
+
         // Add new code here.
         switch (animal) {
             case "cat":
             case "whale":
                 System.out.println("mammal");
                 break;
-            
+
             case "shark":
                 System.out.println("fish");
                 break;
-            default: 
+            default:
                 System.out.println("don't know");
         }
 
@@ -89,10 +97,9 @@ public class W04Exercise1 {
         // Add new code here.
         if (s1.contains(s2)) {
             System.out.printf("%s does contain %s, starting at position %s", s1, s2, s1.indexOf(s2));
-        }
-        else {
+        } else {
             System.out.printf("%s does not contain %s", s1, s2);
-        }   
-        
+        }
+
     }
 }
