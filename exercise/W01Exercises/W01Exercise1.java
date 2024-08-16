@@ -5,7 +5,7 @@ public class W01Exercise1 {
         // create a Burger object with no name or price
         Burger burger = new Burger();
 
-        // TODO: Add some ingredients to the burger
+        // create a cheeseburger
         burger.addBottomBun();
         burger.addPatty();
         burger.addCheese();
@@ -13,7 +13,25 @@ public class W01Exercise1 {
         burger.addTomato();
         burger.addTopBun();
 
-        // display the burger
+        // add its name and price;
+        burger.setName("cheeseburger");
+        burger.setPrice(3);
+
+        // create a hamburger with price 2
+        Burger burger2 = new Burger("hamburger", 2);
+        burger2.addBottomBun();
+        burger2.addPatty();
+        burger2.addLettuce();
+        burger2.addTomato();
+        burger2.addTopBun();
+
+        // display the cheese burger
         burger.display();
+
+        // display the cheeseburger and hamburger
+        MultiBurgerDisplay displayer = new MultiBurgerDisplay();
+        displayer.add(burger);
+        displayer.add(burger2);
+
     }
 }
