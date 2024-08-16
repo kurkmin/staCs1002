@@ -15,7 +15,7 @@ public class W03Exercises2 {
         int mugWidth = reader.nextInt();
         Mug userMug = new Mug(mugType, mugHeight, mugWidth);
 
-        // ask user how many cups of coffee he/she drinks
+        // ask how many cups of coffee the user drinks
         // it gives total litres of coffee the user drinks
         // and gives the maximum number of marshmallow it can be sweetened
         System.out.printf("How many '%s' cups of coffee do you drink per day?%n", mug3.getName());
