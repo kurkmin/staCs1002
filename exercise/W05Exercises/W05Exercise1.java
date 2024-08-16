@@ -168,10 +168,10 @@ public class W05Exercise1 {
     }
 
     public void exercise11() {
-
         System.out.println("Enter number:");
         int userSeq = reader.nextInt();
         String star = "";
+        // includes the widest part
         for (int i = 0; i < userSeq; i++) {
             star = star + "x ";
             System.out.println(star);
