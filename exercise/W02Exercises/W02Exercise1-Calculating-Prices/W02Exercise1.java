@@ -1,21 +1,20 @@
-import java.util.Scanner; 
+import java.util.Scanner;
 
 public class W02Exercise1 {
     public static void main(String[] args) {
-        // declare a variable to store the price of a burger 
-        // Double burgerPrice = 3.5; 
-        // System.out.println(burgerPrice);
+        // declare a variable to store the price of a burger
+        Double burgerPrice = 3.5;
+        System.out.println(burgerPrice);
 
         // Ask user to set the price for a burger
-        // here we use nextDouble method instead of nextLine method 
+        // here we use nextDouble method instead of nextLine method
         // as our burger prcie consists of not string but floating number
-        // System.out.println("what is your burger price?");
-        // Scanner reader = new Scanner(System.in);
-        // Double burgerPrice = reader.nextDouble();
-        
-        // System.out.println("the burger price is " + burgerPrice);
+        System.out.println("what is your burger price?");
+        Scanner reader = new Scanner(System.in);
+        Double burgerPrice0 = reader.nextDouble();
+        System.out.println("the burger price is " + burgerPrice0);
 
-        // To calculate the average price of three different burgers 
+        // To calculate the average price of three different burgers
         // Ask user to set the prices for the burgers
         System.out.println("what is your first burger price?");
         Scanner reader1 = new Scanner(System.in);
