@@ -9,7 +9,7 @@ public class Greeter {
 
     public static void main(String[] args) {
         String message = "hellllloooo";
-        String otherMessage = message.toUpperCase();
+        // String otherMessage = message.toUpperCase();
         System.out.println(message);
 
         Greeter greet = new Greeter();
