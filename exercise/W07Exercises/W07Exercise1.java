@@ -123,7 +123,7 @@ public class W07Exercise1 {
 		System.out.println("Type the integer you are looking for: ");
 		int userSearch = reader.nextInt();
 		boolean found = false;
-		for (int i = 0; i < userArray.length;) {
+		for (int i = 0; i < userArray.length; i++) {
 			if (userArray[i] == userSearch) {
 				System.out.println(i);
 				found = true;
@@ -134,6 +134,7 @@ public class W07Exercise1 {
 		if (!found) {
 			System.out.println(-1);
 		}
+
 	}
 
 	public void exercise6() {
@@ -160,6 +161,25 @@ public class W07Exercise1 {
 	}
 
 	public void exercise7() {
+		int[][] userArray = new int[3][3];
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				System.err.printf("Enter element [%d, %d]: ", i + 1, j + 1);
+				int userInt = reader.nextInt();
+				userArray[i][j] = userInt;
+			}
+		}
+		// transpose the matrix
+		System.err.println("Transposed array: ");
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				userArray[i][j] = userArray[j][i];
+				System.err.printf("%d ", userArray[i][j]);
+				if (j == 2) {
+					System.err.printf("%n");
+				}
+			}
+		}
 
 	}
 }
