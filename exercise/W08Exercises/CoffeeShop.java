@@ -4,7 +4,7 @@ public class CoffeeShop {
     private int starRating;
     private Drink[] drinks = new Drink[10];
 
-    // ! how to create total revenue for all coffeeshops?
+    // ! how to create total revenue for all coffeeshops
     public static double totalRevenue = 0;
 
     // getters
