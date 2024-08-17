@@ -5,7 +5,7 @@ public class CoffeeShop {
     private int stars;
     private Drink[] drinks;
     private static final int MAX_DRINKS = 10;
-    private static double totalSales; // record total sales of the chain of coffee shops
+    private static double totalSales; // record the total sales of all coffee shops
 
     public CoffeeShop(String name, String address) {
         this.name = name;
