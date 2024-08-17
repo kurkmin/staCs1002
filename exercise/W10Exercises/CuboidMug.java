@@ -26,9 +26,10 @@ public class CuboidMug extends Mug {
                 getName(), getHeight(), getWidth(), depth, getVolume(), getMarshmallowLimit());
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s mug (%dmm x %dmm), holding %.3fl and up to %d marshmallows.",
-                name, height, width, getVolume(), getMarshmallowLimit());
-    }
+    // @Override
+    // public String toString() {
+    // return String.format("%s mug (%dmm x %dmm), holding %.3fl and up to %d
+    // marshmallows.",
+    // name, height, width, getVolume(), getMarshmallowLimit());
+    // }
 }

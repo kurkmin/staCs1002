@@ -1,11 +1,11 @@
 public class CoffeeShop {
     private String name;
     private String address;
-    private static int starRating = 0;
+    private int starRating;
     private Drink[] drinks = new Drink[10];
 
     // ! how to create total revenue for all coffeeshops?
-    public static int totalRevenue = 0;
+    public static double totalRevenue = 0;
 
     // getters
 
@@ -58,7 +58,7 @@ public class CoffeeShop {
         for (int i = 0; i < drinks.length; i++) {
             if (drinks[i] == null) {
                 drinks[i] = drink;
-                break;
+                return;
             }
 
         }
@@ -92,11 +92,17 @@ public class CoffeeShop {
         }
     }
 
+    public void print() {
+        System.out.println(name + ", " + address + " " + "★".repeat(starRating) + "☆".repeat(5 - starRating));
+    }
+
     public void sellDrink(int menuNumber) {
         menuNumber -= 1;
-        if (menuNumber >= 0 && menuNumber <= 10 && drinks[menuNumber] != null) {
+        if (menuNumber >= 0 && menuNumber <= drinks.length && drinks[menuNumber] != null) {
             double drinkPrice = drinks[menuNumber].getPrice();
             totalRevenue += drinkPrice;
+            // totalSales += (drinks[index - 1] != null) ? drinks[index - 1].getPrice() : 0.0;
+        }
         }
     }
 

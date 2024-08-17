@@ -140,7 +140,36 @@ public class W11ListExercises {
 	}
 
 	public void exercise7() {
-		// should be added
+		// user inputs to form a matrix
+		List<List<Integer>> userList = new ArrayList<>();
+		for (int i = 0; i < 3; i++) {
+			List<Integer> innerList = new ArrayList<>();
+			for (int j = 0; j < 3; j++) {
+				System.err.printf("Enter element [%d, %d]: ", i + 1, j + 1);
+				int userInt = reader.nextInt();
+				innerList.add(userInt);
+			}
+			userList.add(innerList);
+		}
+
+		// transpose the matrix
+		System.err.println("Transposed array: ");
+		List<List<Integer>> transposedList = new ArrayList<>();
+		for (int i = 0; i < 3; i++) {
+			transposedList.add(new ArrayList<>());
+		}
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				int userElement = userList.get(i).get(j);
+				transposedList.get(j).add(userElement);
+				if (j == 2) {
+					System.err.printf("%n");
+				}
+			}
+
+		}
+		// ! print
+		System.out.println(transposedList);
 	}
 
 }

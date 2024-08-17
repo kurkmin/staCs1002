@@ -1,11 +1,22 @@
 public class Drink {
     private String name;
     private double price;
-    private final boolean CAFFEINATION;
+    private final boolean isCaffeinated;
     private Mug mug;
 
-    // getters
+    // Constructors
+    public Drink(String name, double price, boolean isCaffeinated, Mug mug) {
+        this.name = name;
+        this.price = price;
+        this.isCaffeinated = isCaffeinated;
+        this.mug = mug;
+    }
 
+    public Drink(String name, double price, Mug mug) {
+        this(name, price, true, mug);
+    }
+
+    // getters
     public String getName() {
         return name;
     }
@@ -14,8 +25,8 @@ public class Drink {
         return price;
     }
 
-    public boolean getCaffeination() {
-        return CAFFEINATION;
+    public boolean isCaffeinated() {
+        return isCaffeinated;
     }
 
     public Mug getMug() {
@@ -41,18 +52,7 @@ public class Drink {
     // this.CAFFEINATION = caffeination;
     // }
 
-    public Drink(String name, double price, boolean caffeination, Mug mug) {
-        this.name = name;
-        this.price = price;
-        this.CAFFEINATION = caffeination;
-        this.mug = mug;
-    }
-
-    public Drink(String name, double price, Mug mug) {
-        this(name, price, true, mug);
-    }
-
     public void print() {
-        System.out.println(name + " " + price + " " + CAFFEINATION + " " + mug);
+        System.out.println(name + " " + price + " " + isCaffeinated + " " + mug);
     }
 }

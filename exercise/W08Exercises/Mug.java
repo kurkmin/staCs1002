@@ -3,7 +3,7 @@ public class Mug {
     private String name;
     private int height;
     private int width;
-    final double LITRES_PER_MALLOW = 0.2;
+    private static final double LITRES_PER_MALLOW = 0.2;
 
     // W03-1-2: add constructor
     public Mug(String name, int height, int width) {
