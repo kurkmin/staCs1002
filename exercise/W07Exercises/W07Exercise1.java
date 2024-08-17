@@ -161,6 +161,7 @@ public class W07Exercise1 {
 	}
 
 	public void exercise7() {
+		// user inputs to form a matrix
 		int[][] userArray = new int[3][3];
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
