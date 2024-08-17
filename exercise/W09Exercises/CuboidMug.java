@@ -11,7 +11,6 @@ public class CuboidMug extends Mug {
 
     }
 
-    // ! why not divided by 1000000.0? Examine
     public double getCuboidVolume() {
 
         return (getCuboidTopArea() * getHeight()) / 1000000.0;
